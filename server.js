@@ -45,14 +45,16 @@ app.listen(port, () => console.log(`Server up and running on port ${port} !`));
 
 app.post('/routes/api/feedback',(req,res) => {
 
+  const config = require("./config/keys");
+
   let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true, // true for 465, false for other ports
+    host: config.host,
+    port: config.port,
+    secure: config.secure,
     auth: {
-      user: 'itsxperthub.test@gmail.com', // generated ethereal user
-      pass: '03111998' // generated ethereal password
-    }
+      		user: config.user,
+	  	pass: config.pass
+    	}
   });
 
   const coHtml = `
